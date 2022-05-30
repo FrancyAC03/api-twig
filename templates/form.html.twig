@@ -1,0 +1,77 @@
+{% extends "base.html.twig" %}
+
+{% block css %}
+<link rel="stylesheet" href="css\graphics.css">
+{% endblock css %}
+
+{% block page_body %}
+<center>
+<h1>SHARE <br> YOUR GIF</h1>
+</center>
+
+<div class="containerform">
+  
+  <form method='GET' action='index.php?offset=0'>
+    <div class="group">      
+      <input type="text" name="testo" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Text</label><br>
+       <input type='submit' class="favorite styled" name='submit' value='Search on GIPHY'>
+    </div>
+   
+
+      
+
+    
+  </form>
+</div>
+<div class="container">
+
+
+  <br><br>
+
+    {% for d in data %}
+    
+  <div style="
+      background-image:url('{{d.images.original.url}}');
+      " class='gifComponent'>
+      <div class="testi">
+      <h5 class="author">
+          {{ d.title }}
+      </h5>    
+      
+      <h6 class="username">
+          uploaded by {% if d.username %} {{ d.username }} {% else %} ????? {% endif %}
+      </h6>
+
+      
+      <h7 class="data">
+          on {{ d.import_datetime }}
+      </h7>
+  </div>
+  <div class='funzioni'>
+    <a><img src="icon/copy.png" class="icon" onclick="Copy('{{d.images.original.url}}')"></a>
+      <div class="container1">
+    </div>
+  </div> 
+
+
+
+  </div>
+
+    {% endfor %}
+  </div>
+  <div>
+    <center>
+      <form method="POST" action="index.php?offset={{offset}}&testo={{testo}}">
+      {% if offset != 0 %}
+      <input type="submit" name="indietro" value="←"class="invisible">
+      {% endif %}
+      {% if data %}
+      <input type="submit" name="avanti" value="→" class="invisible">        
+      {% endif %}
+      </form>
+    </center>
+    </div>
+{% endblock page_body %}

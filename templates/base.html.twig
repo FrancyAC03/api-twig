@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}
+    {% endblock css %}
+    {% block js_head %}
+    {% endblock js_head   %}
+</head>
+
+<body>
+  {% block page_body %}
+  {% endblock page_body %}
+  {% block js %}
+
+  <script>
+
+      function Copy(copyText) {
+      navigator.clipboard.writeText(copyText).then(() => {
+      alert("Link GIF copiato correttamente");
+  });
+      }
+  </script>
+
+  {% endblock js %}
+</body>
+
+</html>
